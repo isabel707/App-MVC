@@ -1,3 +1,82 @@
 <?php
 require('Controller/verUsuarios.php');
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <style> 
+body{
+     background: #4492d6 !important;
+     font-size: 18px;
+}
+.button{
+ background-color: #ffff;
+  border: none;
+ color: black;
+ padding: 5px 35px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ transition-duration: 0.4s;
+ cursor: pointer;
+}
+li{
+color: white;
+}
+    </style> 
+    
+</head>
+    <body> 
+    <table>
+
+<thead>
+    <tr>
+        <td>Usuario</td>
+        <td>Contraseña</td>
+        <td>Nombre Real</td>
+    </tr>
+</thead>
+<tbody>
+
+<form>
+<input value="Ingresar/Crear" type="submit" />
+            <div class="caja">
+                <form method="post" action="archivo.php" enctype="multipart/form-data">
+              <h1>Selecciona tu archivo</h1>
+                    <input type="file" name="archivo"/>
+                    <br> <br>
+                    <input type="submit" value="Subir archivo" name="boton"/>
+              <br> <br>
+              <ul>
+              <li><a href="#">Agregar documento</a></li>
+              <br>
+              <li><a href="#">Organizar / Ver documentos</a></li>
+              <br>
+              <li><a href="#">Borrar documentos</a></li>
+              <br> <br>
+            </ul>
+        <div class="button">
+                    <h1>Archivos existentes</h1>
+                </form>
+            </div>
+               <?php
+
+foreach ($usuarios as $user) {
+    echo "<tr>";
+    echo "<td>". $user['username'] ."</td>";
+    echo "<td>". $user['password'] ."</td>";
+    echo "<td>". $user['nombre'] ."</td>";
+    echo "</tr>";
+}
+
+?>
+</tbody>
+</table>
+
+</body>
+</html>
