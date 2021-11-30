@@ -1,0 +1,50 @@
+<?php
+class Conexion{
+    private $con;
+    public function __construct(){
+        $this->con = new mysqli('localhost', 'root', '', 'aplicacionMVC');
+    } 
+
+    public function getUsers(){
+        $query = $this->con->query('SELECT * FROM usuarios');
+
+        $retorno =[];
+        $i = 0;
+        while($fila = $query->fetch_assoc()){
+            $retorno[$i] = $fila;
+            $i++;
+        }
+
+       return $retorno; 
+    }
+}
+?>
+
+<?php
+public class CookiesController:Controller
+{
+    public IActionResult Index()
+    {
+    if(!HttpContext.Request.Cookies.ContainsKey("usuarios"))
+    {
+        HttpContext.Response.Cookies.Append("usuarios", DateTime.Now.ToString());
+        return Content("Hola, bienvenido");
+    }
+  }
+}
+?>
+
+<?php
+public ActionResult Index()
+{
+    if(Session["usuarios"]==null)
+    {
+        return Redirect("~/Login");
+    }
+    else
+    {
+        return Content("Bienvenido " + Session["usuarios"]);
+    }
+}
+
+?>
